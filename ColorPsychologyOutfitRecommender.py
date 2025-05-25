@@ -1,7 +1,8 @@
 def get_user_mood():
-    print("Welcome to the Color Psychology Outfit Recommender!")
+    print("\nWelcome to the Color Psychology Outfit Recommender!")
     print("How are you feeling today?")
     print("Options: happy, sad, angry, stressed, relaxed, energetic, serious, caring")
+    print("Type 'exit' or 'quit' to end the program.")
     mood = input("Enter your mood: ").strip().lower()
     return mood
 
@@ -33,15 +34,19 @@ def suggest_outfit(color):
 
 
 def main():
-    mood = get_user_mood()
-    color = recommend_color(mood)
+    while True:
+        mood = get_user_mood()
+        if mood in ['exit', 'quit']:
+            print("\nThank you for using the Color Psychology Outfit Recommender. Stay stylish!")
+            break
 
-    if color:
-        outfit = suggest_outfit(color)
-        print(f"\nBased on your mood ({mood}), we recommend wearing {color.upper()}.")
-        print(f"Suggested outfit: {outfit}.")
-    else:
-        print("\nSorry, we couldn't recognize your mood. Please try again with a valid mood.")
+        color = recommend_color(mood)
+        if color:
+            outfit = suggest_outfit(color)
+            print(f"\nBased on your mood ({mood}), we recommend wearing {color.upper()}.")
+            print(f"Suggested outfit: {outfit}.")
+        else:
+            print("\nSorry, we couldn't recognize your mood. Please try again with a valid mood.")
 
 
 if __name__ == "__main__":
